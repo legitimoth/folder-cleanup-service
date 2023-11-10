@@ -6,7 +6,7 @@ public class Logger : ILogger
 
     public Logger()
     {
-        _logFilePath = "./.log";
+        _logFilePath = "./log.txt";
 
         if (File.Exists(_logFilePath))
         {

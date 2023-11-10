@@ -33,29 +33,23 @@ Exemplo de `appsettings.json`:
 
 - Instale o .NET SDK correspondente à sua versão de desenvolvimento nesse caso foi `.net 7.0`.
 - Abra o prompt de comando e navegue até a raiz do projeto.
-- Execute `dotnet build -c Release` para compilar o projeto.
-- Copie os arquivo gerados de dentro da pasta `bin/Release/net7.0` para dentro da pasta que desejar no servidor.
+- Execute `dotnet publish -c Release` para compilar o projeto.
+- Copie os arquivo gerados de dentro da pasta `bin/Release/net7.0/win-x64/publish` para dentro da pasta que desejar no servidor.
 
 ## ⏱️ Agendamento do Serviço
 
-### 🧑🏻‍💻 Via Terminal
-- Abra o prompt de comando como administrador.
-- Crie uma tarefa agendada com:
-```shell
-schtasks /create /tn "FolderCleanupTask" /tr "C:\path\to\your\service\FolderCleanupService.exe" /sc daily /st 00:00.
-```
-
-### 🖥️ Via Interface Gráfica
-
 - Pressione `Win + R`, digite `taskschd.msc` e pressione "Enter".
 - Clique em "Criar Tarefa..." no painel de ações.
-- Na aba "Geral", insira um "nome" e uma "descrição".
+- Na aba "Geral":
+  - Insira um "Nome" e uma "Descrição".
+  - Marque a opção "execute se o usuário estiver conectado ou não".
+  - Marque "executar com previlegios"
 - Em "Disparadores", defina o "horário" e a "frequência" de execução.
-- Em "Ações", aponte para o executável do serviço.
+- Em "Ações", aponte para o executável do serviço e coloque o path da pasta raiz em "Iniciar Em".
 - Ajuste as configurações de segurança conforme necessário.
 
 ## 📑 Logs
 
 O serviço possui um arquivo de log que fica dentro da pasta raiz. Esse arquivo e reescrito a cada execução.
 
-Arquivo: `./.log`
+Arquivo: `./log.txt`
